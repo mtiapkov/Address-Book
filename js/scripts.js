@@ -53,7 +53,10 @@ let addressBook = new AddressBook();
 function displayContactDetails(addressBookToDisplay) {
   let contactsList = $("ul#contacts");
   let htmlForContactInfo = "";
-  addressBookToDisplay.contact.ForEach(function(contact) {
+  addressBookToDisplay.contacts.forEach(function(contact) {
+    htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
+  });
+  contactsList.html(htmlForContactInfo);
 }
 
 $(document).ready(function() {
@@ -64,6 +67,6 @@ $(document).ready(function() {
     const inputtedPhoneNumber = $("input#new-phone-number").val();
     let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
     addressBook.addContact(newContact);
-    console.log(addressBook.contacts);
+    displayContactDetails(addressBook);
   });
 });
